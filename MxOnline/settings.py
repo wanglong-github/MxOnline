@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.users.apps.UsersConfig',
+    'apps.courses.apps.CoursesConfig'
 ]
 
 MIDDLEWARE = [
@@ -117,8 +119,8 @@ USE_TZ = False
 USE_I18N = True
 
 USE_L10N = True
-
-
+# user表在django中已经注册
+AUTH_USER_MODEL="users.UserProfile"
 
 
 # Static files (CSS, JavaScript, Images)
