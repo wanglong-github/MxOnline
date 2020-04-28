@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'xadmin.apps.XAdminConfig',
     'apps.orgaization.apps.OrgaizationConfig',
     'apps.operations.apps.OperationsConfig',
+    'apps.organizations.apps.OrganizationsConfig'
 ]
 
 MIDDLEWARE = [
