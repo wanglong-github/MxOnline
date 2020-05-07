@@ -7,7 +7,7 @@ from django.urls import reverse
 
 
 # Create your views here.
-class LoginView(View):
+class LoginView(View):#需要继承View
     def get(self, request, *args, **kwargs):
         return render(request, 'login.html')
 
@@ -36,4 +36,3 @@ class LoginView(View):
             else:
             # 未查询到用户，要求重新登录,仍然返回login界面
                 return render(request, 'login.html')
-
