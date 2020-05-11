@@ -18,7 +18,7 @@ class CourseOrg(BaseModel):
     city = models.ForeignKey(City,verbose_name="所在城市" ,on_delete=models.CASCADE)
     name = models.CharField(verbose_name='机构名称',max_length=30)
     tag = models.CharField(verbose_name="机构标签",max_length=100)
-    category = models.CharField(verbose_name="机构类别",max_length=2,choices=(('gr','个人'),('gx','高校')))
+    category = models.CharField(verbose_name="机构类别",max_length=10,choices=(('gr','个人'),('gx','高校'),('pxjg','培训机构')))
     fav_nums = models.IntegerField(verbose_name='收藏数',default=0)
     image = models.ImageField(verbose_name="logo",upload_to="org/%Y/%m",max_length=100)
     url = models.CharField(verbose_name='机构地址',max_length=300)

@@ -4,3 +4,4 @@ pillow
 redis
 django-pure-pagination
 django-simple-captcha
+django-pure-pagination
