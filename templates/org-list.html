@@ -59,9 +59,10 @@
                     <div class="layout">
                         <div class="head">
                             <ul class="tab_header">
-                                <li class="active"><a href="?ct=&city=">全部</a></li>
-                                <li class=""><a href="?sort=students&ct=&city=">学习人数 &#8595;</a></li>
-                                <li class=""><a href="?sort=courses&ct=&city=">课程数 &#8595;</a></li>
+                                <li class="{% if sort == '' %}active{% endif %} "><a href="?ct=&city=">全部</a></li>
+                                <li class="{% if sort == 'students' %}active{% endif %} "><a href="?sort=students&ct={{ category }}&city={{ city_id }}">学习人数 &#8595;</a></li>
+{#                                <li class=""><a href="?sort=students&ct=&city=">学习人数 &#8595;</a></li>#}
+                                <li class="{% if sort == 'courses' %}active{% endif %} "><a href="?sort=courses&ct={{ category }}&city={{ city_id }}">课程数 &#8595;</a></li>
                             </ul>
                         </div>
                         {% for org in all_orgs.object_list %}
@@ -87,7 +88,7 @@
                                     </div>
                                     <ul class="cont">
                                         <li class="first"><p class="pic9">课程数：<span>{{ org.class_nums }}</span></p>
-                                            <p class="c7">学习人数：<span>{{ org.studengts }}</span></p></li>
+                                            <p class="c7">学习人数：<span>{{ org.students }}</span></p></li>
                                         <li class="c8" style="padding-left:18px;">{{ org.url }}</li>
                                         <li class="pic10" style="padding-left:18px;">经典课程：
 
@@ -161,21 +162,6 @@
                     </dd>
                 </dl>
 
-                <dl class="des">
-                    <dt class="num fl">2</dt>
-                    <dd>
-                        <a href="/company/2/"><h1>慕学网2</h1></a>
-                        <p>深圳市</p>
-                    </dd>
-                </dl>
-
-                <dl class="des">
-                    <dt class="num fl">3</dt>
-                    <dd>
-                        <a href="/company/2/"><h1>北京大学</h1></a>
-                        <p>北京市</p>
-                    </dd>
-                </dl>
 
 
             </div>
