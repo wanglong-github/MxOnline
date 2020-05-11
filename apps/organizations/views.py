@@ -32,4 +32,4 @@ class OrgView(View):
         orgs=p.page(page)
 
         return render(request,'org-list.html',
-                      {'all_orgs':orgs,'all_city':all_city,'org_nums':org_nums,'category':category})
+                      {'city_id':city_id,'all_orgs':orgs,'all_city':all_city,'org_nums':org_nums,'category':category,})
