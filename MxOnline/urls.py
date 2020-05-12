@@ -6,7 +6,7 @@ import xadmin
 from django.views.generic import TemplateView
 from apps.users.views import LoginView
 from apps.organizations.views import OrgView
-from django.conf.urls import url
+from django.conf.urls import url,include
 from django.views.static import serve
 from MxOnline.settings import MEDIA_ROOT
 urlpatterns = [
@@ -18,6 +18,7 @@ urlpatterns = [
     # 配置授课机构列表展示
     path('orglist/', OrgView.as_view(),name='org_list'),
 #     配置上传文件的访问url
-    url(r'^media/(?P<path>.*)$',serve,{"document_root":MEDIA_ROOT})
-
+    url(r'^media/(?P<path>.*)$',serve,{"document_root":MEDIA_ROOT}),
+    # 授课机构相关操作
+    url(r'^org/', include(('apps.organizations.urls', 'organizations'), namespace='org')),
 ]
