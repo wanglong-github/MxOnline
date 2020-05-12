@@ -21,4 +21,6 @@ urlpatterns = [
     url(r'^media/(?P<path>.*)$',serve,{"document_root":MEDIA_ROOT}),
     # 授课机构相关操作
     url(r'^org/', include(('apps.organizations.urls', 'organizations'), namespace='org')),
+    # 课程相关页面
+    url(r'^course/', include(('apps.courses.urls', 'courses'), namespace='course')),
 ]
