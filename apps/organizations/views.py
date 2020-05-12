@@ -9,7 +9,7 @@ class OrgView(View):
         # 展示授课机构列表
         all_orgs=CourseOrg.objects.all()
         all_city=City.objects.all()
-        hot_orgs=all_orgs.all()
+        hot_orgs=all_orgs.order_by('-click_nums')[:3]
         #
         category=request.GET.get('ct','')
 
@@ -48,5 +48,6 @@ class OrgView(View):
                        'org_nums':org_nums,
                        'category':category,
                        'sort':sort,
+                       'hot_orgs':hot_orgs,
 
                        })
