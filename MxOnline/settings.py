@@ -42,9 +42,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'xadmin.apps.XAdminConfig',
     'apps.orgaization.apps.OrgaizationConfig',
-    'apps.operations.apps.OperationsConfig',
     'apps.organizations.apps.OrganizationsConfig',
     'pure_pagination',
+    'apps.operations.apps.OperationsConfig'
 ]
 
 MIDDLEWARE = [
