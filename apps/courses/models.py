@@ -8,7 +8,7 @@ class Course(BaseModel):
     desc = models.CharField(verbose_name='课程描述',max_length=300)
     learn_times = models.IntegerField(default=0,verbose_name='学习时长（分钟）')
     degree = models.CharField(verbose_name='课程难度',choices=(('cj','初级'),('zj','中级'),('gj','高级')),max_length=2)
-    studengts = models.IntegerField(verbose_name="学习人数",default=0)
+    students = models.IntegerField(verbose_name="学习人数",default=0)
     fav_nums = models.IntegerField(verbose_name="收藏人数",default=0)
     click_nums = models.IntegerField(verbose_name="点击数",default=0)
     notice = models.CharField(verbose_name='课程公告',max_length=300,default='')

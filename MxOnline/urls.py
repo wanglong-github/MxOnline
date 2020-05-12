@@ -13,6 +13,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('xadmin/', xadmin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'),name='index'),
+    path('courselist/', TemplateView.as_view(template_name='course-list.html'), name='course_list'),
     path('login/', LoginView.as_view(),name='login'),
     # 配置授课机构列表展示
     path('orglist/', OrgView.as_view(),name='org_list'),

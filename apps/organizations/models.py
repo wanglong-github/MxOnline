@@ -22,7 +22,8 @@ class CourseOrg(BaseModel):
     fav_nums = models.IntegerField(verbose_name='收藏数',default=0)
     image = models.ImageField(verbose_name="logo",upload_to="org/%Y/%m",max_length=100)
     url = models.CharField(verbose_name='机构地址',max_length=300)
-    studengts = models.IntegerField(verbose_name='学习人数',default=0)
+    students = models.IntegerField(verbose_name='学习人数',default=0)
+    click_nums = models.IntegerField(verbose_name='点击数', default=0)
     class_nums = models.IntegerField(verbose_name='课程数',default=0)
     is_CCC = models.BooleanField(verbose_name="是否认证",default=False)
     is_gold = models.BooleanField(verbose_name="是否金牌",default=False)
@@ -41,7 +42,7 @@ class Teacher(BaseModel):
     company = models.CharField(verbose_name='就职公司',max_length=30,default="")
     position = models.CharField(verbose_name='公司职位',max_length=20,default="")
     style = models.CharField(verbose_name='教学特点',max_length=1000,default="")
-    click_nums = models.IntegerField(verbose_name='点击数',default=0)
+
     fav_nums = models.IntegerField(verbose_name="收藏数",default=0)
     age = models.IntegerField(verbose_name='年龄',default=0)
     image = models.ImageField(upload_to="teacher/%Y/%m", verbose_name="头像", max_length=100)
