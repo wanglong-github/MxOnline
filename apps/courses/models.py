@@ -28,6 +28,10 @@ class Course(BaseModel):
     def __str__(self):
         return self.name
 
+    def lesson_nums(self):
+        # 统计章节数
+        return self.lesson_set.all().count()
+
 class Lesson(BaseModel):
     # on_delete对应的外界数据库被删除后，当前数据怎么办
     course = models.ForeignKey(Course,verbose_name="课程",on_delete=models.CASCADE)
