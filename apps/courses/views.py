@@ -9,7 +9,7 @@ class CourseListView(View):
         # 获取课程列表信息
         all_courses=Course.objects.order_by("-add_time")
         ## 获取热门课程 前3个
-
+        hot_courses = Course.objects.order_by('-click_nums')[:3]
         sort = request.GET.get('sort', "")
         if sort == 'students ':
             # 根据参与人数排序  减号代表倒序排序的意思
@@ -30,5 +30,6 @@ class CourseListView(View):
         return render(request, 'course-list.html',
                       {"all_courses": courses,
                        "sort": sort,
+                       "hot_courses":hot_courses,
 
                        })
