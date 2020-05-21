@@ -37,7 +37,7 @@ class CourseOrg(BaseModel):
 class Teacher(BaseModel):
     user = models.OneToOneField(UserProfile, verbose_name="用户",on_delete=models.SET_NULL, null=True, blank=True)
     subsidiary_organ = models.CharField(verbose_name='所属机构',max_length=100)
-    techaer = models.CharField(verbose_name='教师名',max_length=10)
+    name = models.CharField(verbose_name='教师名',max_length=10)
     working = models.IntegerField(verbose_name='工作年限',default=0)
     company = models.CharField(verbose_name='就职公司',max_length=30,default="")
     position = models.CharField(verbose_name='公司职位',max_length=20,default="")
