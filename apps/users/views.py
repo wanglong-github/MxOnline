@@ -2,14 +2,18 @@ from django.shortcuts import render
 from django.views.generic.base import View
 from django.http import HttpResponse, HttpResponseRedirect
 from apps.users.form import LoginForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 
 
 # Create your views here.
 class LoginView(View):#需要继承View
     def get(self, request, *args, **kwargs):
-        return render(request, 'login.html')
+        if request.user.is_authenticated:
+            return HttpResponseRedirect(reverse("index"))
+        next = request.GET.get("next", "")
+
+        return render(request, 'login.html', {"next": next})
 
     def post(self, request, *args, **kwargs):
         """
@@ -27,12 +31,25 @@ class LoginView(View):#需要继承View
             user_name = login_form.cleaned_data["username"]
             password = login_form.cleaned_data["password"]
             user = authenticate(username=user_name, password=password)
-        # 判断user对象是否存在
+            # 判断user对象是否存在
             if user is not None:
             # 不为空， z证明查询到了用户
                 login(request, user)
             # 重定向到网站首页
-                return HttpResponseRedirect(reverse("index"))
+            # 取一下next值
+                next = request.GET.get("next", "")
+                if next:
+                    return HttpResponseRedirect(next)
+                # 重定向到网站首页
+                    return HttpResponseRedirect(reverse("index"))
+                else:
+                    # 未查询到用户，要求重新登录,仍然返回login界面
+                    return render(request, 'login.html', {"msg": "用户名密码错误", "login_form": login_form})
             else:
-            # 未查询到用户，要求重新登录,仍然返回login界面
-                return render(request, 'login.html')
+                return render(request, "login.html", {"login_form": login_form})
+
+class LogoutView(View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        # 重定向到网站首页
+        return HttpResponseRedirect(reverse("index"))

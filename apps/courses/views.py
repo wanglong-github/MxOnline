@@ -3,7 +3,7 @@ from django.views.generic.base import View
 from apps.courses.models import Course
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from apps.operations.models import UserFavorite
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 class CourseListView(View):
@@ -58,12 +58,14 @@ class CourseDetailView(View):
                        })
 
 
-class CouersLessonView(View):
+class CouersLessonView(LoginRequiredMixin,View):
     """
     章节信息
     """
 
-    def get(self, request, course_id,  *args, **kwargs):
+    login_url = '/login/'
+
+    def get(self, request, course_id, *args, **kwargs):
         course = Course.objects.get(id=int(course_id))
         # 点击到课程 的详情就记录一次点击数
         course.click_nums += 1

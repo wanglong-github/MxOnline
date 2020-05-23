@@ -4,7 +4,7 @@ from django.urls import path
 import xadmin
 # from apps.users import views
 from django.views.generic import TemplateView
-from apps.users.views import LoginView
+from apps.users.views import LoginView, LogoutView
 from apps.organizations.views import OrgView
 from django.conf.urls import url,include
 from django.views.static import serve
@@ -17,6 +17,7 @@ urlpatterns = [
     path('login/', LoginView.as_view(),name='login'),
     # 配置授课机构列表展示
     path('orglist/', OrgView.as_view(),name='org_list'),
+    path('logout/',LogoutView.as_view(), name ='logout'),
 #     配置上传文件的访问url
     url(r'^media/(?P<path>.*)$',serve,{"document_root":MEDIA_ROOT}),
     # 授课机构相关操作
@@ -25,4 +26,5 @@ urlpatterns = [
     url(r'^course/', include(('apps.courses.urls', 'courses'), namespace='course')),
     # 用户操作相关
     url(r'^op/', include(('apps.operations.urls', 'operations'), namespace='op')),
+
 ]
