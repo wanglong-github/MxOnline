@@ -4,7 +4,7 @@ from apps.courses.models import Course
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from apps.operations.models import UserFavorite
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from apps.courses.models import Video, CourseResource
 # Create your views here.
 class CourseListView(View):
     def get(self, request, *args, **kwargs):
@@ -70,10 +70,11 @@ class CouersLessonView(LoginRequiredMixin,View):
         # 点击到课程 的详情就记录一次点击数
         course.click_nums += 1
         course.save()
-
+        # 查询资料信息
+        course_resource = CourseResource.objects.filter(course=course)
 
         return render(request, 'course-video.html',
                       {"course": course,
-
+                       "course_resource": course_resource,
                        }
                       )
