@@ -1,7 +1,7 @@
 from django.conf.urls import url, include
 from apps.organizations.views import OrgView,AddAsk
 from apps.courses.views import CourseListView,CourseDetailView
-from apps.courses.views import CourseListView, CourseDetailView, CouersLessonView, CouersCommentsView
+from apps.courses.views import CourseListView, CourseDetailView, CouersLessonView, CouersCommentsView,VideoView
 urlpatterns = [
     url(r'^list/',CourseListView.as_view(), name='list'),
     # url(r'^detail/',CourseDetailView.as_view(), name='detail'),
@@ -9,4 +9,5 @@ urlpatterns = [
 
     url(r'^(?P<course_id>\d+)/lesson/$', CouersLessonView.as_view(), name='lesson'),
     url(r'^(?P<course_id>\d+)/comments/$', CouersCommentsView.as_view(), name='comments'),
+    url(r'^(?P<course_id>\d+)/video/(?P<video_id>\d+)$', VideoView.as_view(), name='video'),
 ]

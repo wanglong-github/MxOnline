@@ -75,6 +75,7 @@
         <div id="course_note">
             <ul class="mod-post" id="comment-list">
                 {% for comment in comments %}
+
                 <li class="post-row">
                     <div class="media">
                         <span target="_blank"><img src='{{ comment.user.image.url }}'
@@ -82,16 +83,20 @@
                     </div>
                     <div class="bd">
                         <div class="tit">
-                            <span target="_blank">>{% if comment.user.nick_name %}{{comment.user.nick_name}}{% else %}{{comment.user.username  }}{% endif %}</span>
+                            <span target="_blank">{% if comment.user.nick_name %}{{comment.user.nick_name}}{% else %}{{comment.user.username  }}{% endif %}</span>
                         </div>
                         <p class="cnt">
-                            {{ comment.comments }} <p>
+                            {{ comment.comments }}
+                           </p>
                         <div class="footer clearfix">
-                            <span title="创建时间" class="l timeago">{{ comment.add_time }}</span>
+                            <span title="创建时间" class="l timeago">时间：{{comment.add_time}}</span>
                         </div>
                     </div>
                 </li>
                 {% endfor %}
+
+
+
             </ul>
         </div>
 
@@ -182,7 +187,6 @@
 </div>
 </div>
 {% endblock %}
-
 {% block custom_js %}
     <script type="text/javascript">
         //添加评论
@@ -196,8 +200,8 @@
                 $.ajax({
                     cache: false,
                     type: "POST",
-                    url: "/course/add_comment/",
-                    data: {'course_id': 10, 'comments': comments},
+                    url: "{% url 'op:comment'%}",
+                    data: {'course': {{ course.id }}, 'comments': comments},
                     async: true,
                     beforeSend: function (xhr, settings) {
                         xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");

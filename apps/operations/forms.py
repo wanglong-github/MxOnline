@@ -3,7 +3,7 @@ from django import forms
 class UserFavForm(forms.ModelForm):
     class Meta:
         model = UserFavorite
-        fields = ["fav_id","fav_type"]
+        fields = ["fav_id", "fav_type"]
 
 
 class CommentForm(forms.ModelForm):
