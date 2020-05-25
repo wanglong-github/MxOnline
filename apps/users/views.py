@@ -4,10 +4,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 from apps.users.form import LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
-class LoginView(View):#需要继承View
+class LoginView(View):  # 需要继承View
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return HttpResponseRedirect(reverse("index"))
@@ -33,14 +34,14 @@ class LoginView(View):#需要继承View
             user = authenticate(username=user_name, password=password)
             # 判断user对象是否存在
             if user is not None:
-            # 不为空， z证明查询到了用户
+                # 不为空， z证明查询到了用户
                 login(request, user)
-            # 重定向到网站首页
-            # 取一下next值
+                # 重定向到网站首页
+                # 取一下next值
                 next = request.GET.get("next", "")
                 if next:
                     return HttpResponseRedirect(next)
-                # 重定向到网站首页
+                    # 重定向到网站首页
                     return HttpResponseRedirect(reverse("index"))
                 else:
                     # 未查询到用户，要求重新登录,仍然返回login界面
@@ -48,8 +49,18 @@ class LoginView(View):#需要继承View
             else:
                 return render(request, "login.html", {"login_form": login_form})
 
+
 class LogoutView(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         # 重定向到网站首页
         return HttpResponseRedirect(reverse("index"))
+
+class UserInfoView(LoginRequiredMixin, View):
+    login_url = '/login/'
+
+    def get(self, request, *args, **kwargs):
+        current_page = 'info'
+        return render(request, 'usercenter-info.html', {
+            "current_page": current_page
+        })
