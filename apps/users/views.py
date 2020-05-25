@@ -8,8 +8,8 @@ from apps.users.form import LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from apps.users.form import LoginForm, ChangePwodForm
 # Create your views here.
 class LoginView(View):  # 需要继承View
     def get(self, request, *args, **kwargs):
@@ -106,3 +106,17 @@ class MyFavCourseView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         pass
+
+class ChangePwdView(LoginRequiredMixin, View):
+    login_url = '/login/'
+
+    def post(self, request, *args, **kwargs):
+        pwd_form = ChangePwodForm(request.POST)
+        if pwd_form.is_valid():
+            pwd1 =request.POST.get("password1","")
+            user = request.user
+            user.set_password(pwd1)
+            user.save()
+            return JsonResponse({"status":"success"})
+        else:
+            return JsonResponse(pwd_form.errors)
