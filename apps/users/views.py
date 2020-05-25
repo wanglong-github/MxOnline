@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.views.generic.base import View
 from django.http import HttpResponse, HttpResponseRedirect
+
+from apps.operations.models import UserFavorite
+from apps.organizations.models import CourseOrg
 from apps.users.form import LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
@@ -64,3 +67,41 @@ class UserInfoView(LoginRequiredMixin, View):
         return render(request, 'usercenter-info.html', {
             "current_page": current_page
         })
+
+class MyFavOrgView(LoginRequiredMixin, View):
+    login_url = '/login/'
+
+    def get(self, request, *args, **kwargs):
+        current_page = 'myfavorg'
+        fav_orgs = UserFavorite.objects.filter(user=request.user,fav_type = 2)
+        org_list = []
+        for fav_org in fav_orgs:
+            org = CourseOrg.objects.get(id = fav_org.fav_id )
+            org_list.append(org)
+        return render(request, 'usercenter-fav-org.html', {
+            "current_page": current_page,
+            "org_list":org_list
+        })
+
+
+class MyFavTeacherView(LoginRequiredMixin, View):
+    login_url = '/login/'
+
+    def get(self, request, *args, **kwargs):
+        current_page = 'myfav_teacher'
+        fav_teacher = UserFavorite.objects.filter(user=request.user, fav_type=3)
+        teacher_list = []
+        for fav_org in fav_teacher:
+            teacher = CourseOrg.objects.get(id=fav_org.fav_id)
+            teacher_list.append(teacher)
+        return render(request, 'usercenter-fav-teacher.html', {
+            "current_page": current_page,
+            "teacher_list": teacher_list
+        })
+
+
+class MyFavCourseView(LoginRequiredMixin, View):
+    login_url = '/login/'
+
+    def get(self, request, *args, **kwargs):
+        pass

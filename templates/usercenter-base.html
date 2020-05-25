@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 {% load staticfiles %}
 <head>
     <meta charset="UTF-8">
@@ -27,7 +26,6 @@
                     <div class="fl"><p>服务电话：<b>400-888-888</b></p></div>
                     <!--登录后跳转-->
                     {% if user.is_authenticated %}
-
                         <div class="personal">
                             <dl class="user fr">
                                 <dd>{% if user.nick_name %}{{ user.nick_name }}{% else %}
@@ -52,10 +50,8 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
-                        </div>
-                    {% else %}
 
+                    {% else %}
 
                         <a style="color:white" class="fr registerbtn" href="register.html">注册</a>
                         <a style="color:white" class="fr loginbtn" href="{% url 'login' %}">登录</a>
@@ -67,13 +63,12 @@
 
         </div>
         </div>
-
-        <div class="middle">
-            <div class="wp">
-                <a href="{% url 'index' %}"><img class="fl" src="/static/images/logo2.png"/></a>
-                <h1>我的慕学网</h1>
+             <div class="middle">
+                <div class="wp">
+                    <a href="{% url 'index' %}"><img class="fl" src="/static/images/logo2.png"/></a>
+                    <h1>我的慕学网</h1>
+                </div>
             </div>
-        </div>
         </div>
 
     </header>
@@ -91,8 +86,8 @@
                 </li>
                 <li class="{% if current_page == 'mycourse' %}active2{% endif %}"><a href="{% url 'users:mycourse' %}">我的课程</a>
                 </li>
-                <li class="{% if current_page == 'myfav' %}active2{% endif %}"><a
-                        href="usercenter-fav-course.html">我的收藏</a></li>
+                <li class="{% if current_page == 'myfavorg' %}active2{% endif %}"><a
+                        href="{% url 'users:myfavorg' %}">我的收藏</a></li>
                 <li class="{% if current_page == 'message' %}active2{% endif %}">
                     <a href="usercenter-message.html" style="position: relative;">
                         我的消息
@@ -228,8 +223,8 @@
                 </div>
                 <div class="box">
                     <span class="word3">验证码</span>
-                    < <input autocomplete="off" class="form-control-captcha find-password-captcha"
-                             id="find-password-captcha_1" name="captcha_f_1" placeholder="请输入验证码" type="text"/> <input
+                    <input autocomplete="off" class="form-control-captcha find-password-captcha"
+                           id="find-password-captcha_1" name="captcha_f_1" placeholder="请输入验证码" type="text"/> <input
                         class="form-control-captcha find-password-captcha" id="find-password-captcha_0"
                         name="captcha_f_0" placeholder="请输入验证码" type="hidden"
                         value="5f3c00e47fb1be12d2fd15b9a860711597721b3f"/> &nbsp;<img
@@ -362,7 +357,6 @@
         if (shareUrl) {
             config.bdUrl = "" + shareUrl;
         }
-
         if (shareText) {
             config.bdText = shareText;
         }

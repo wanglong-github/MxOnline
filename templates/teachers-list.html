@@ -34,7 +34,7 @@
 							<div class="fr btn2 bdsharebuttonbox"
                                  data-text="{{teacher.name}}"
                                  data-desc="我在#慕学网#发现了教师“{{teacher.name}}”，对学习中的小伙伴很有帮助，一起来看看吧。"
-                                 data-comment="{{teacher.name}}金牌讲师，从业年限：{{teacher.work_years}}年"
+                                 data-comment="{{teacher.name}}金牌讲师，从业年限：{{teacher.working}}年"
 								 data-tag="share_1"
                                  >
                                 <span class="fl">分享</span>
@@ -47,11 +47,11 @@
                             <h1>{{teacher.name}}<span class="key picbig">金牌讲师</span></h1>
                         </a>
 						<ul class="cont">
-							<li>工作年限：<span>{{ teacher.work_years }}年</span></li>
-							<li>工作职位：<span>{{ teacher.work_position }}</span></li>
-							<li>就职公司：<span>{{ teacher.work_company }}&nbsp;</span></li>
+							<li>工作年限：<span>{{ teacher.working }}年</span></li>
+							<li>工作职位：<span>{{ teacher.position }}</span></li>
+							<li>就职公司：<span>{{ teacher.company }}&nbsp;</span></li>
 							<li>年龄：<span>{{ teacher.age}}岁</span></li>
-							<li>教学特点：<span>{{teacher.points}}</span></li>
+							<li>教学特点：<span>{{teacher.style}}</span></li>
 						</ul>
 					</dd>
                     <a class="buy buyservice" href="{% url 'org:teacher_detail' teacher.id %}"><br/>查看<br/>详情</a>
