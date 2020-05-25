@@ -7,8 +7,10 @@ from apps.users.views import *
 urlpatterns = [
     url(r'^info/$', UserInfoView.as_view(), name='info'),
 
-    url(r'^mycourse/$', login_required(TemplateView.as_view(template_name='usercenter-mycourse.html'), login_url = '/login/'), {"current_page": "mycourse" }, name='mycourse'),
-
+    url(r'^mycourse/$',
+        login_required(TemplateView.as_view(template_name='usercenter-mycourse.html'), login_url='/login/'),
+        {"current_page": "mycourse"}, name='mycourse'),
+    url(r'^message/$', login_required(TemplateView.as_view(template_name='usercenter-message.html'), login_url = '/login/'), {"current_page": "message" }, name='message'),
     url(r'^myfavorg/$', MyFavOrgView.as_view(), name='myfavorg'),
     url(r'^myfav_teacher/$', MyFavTeacherView.as_view(), name='myfav_teacher'),
     url(r'^myfav_course/$', MyFavCourseView.as_view(), name='myfav_course'),

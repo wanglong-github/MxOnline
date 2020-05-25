@@ -64,6 +64,7 @@ class UserInfoView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         current_page = 'info'
+
         return render(request, 'usercenter-info.html', {
             "current_page": current_page
         })
@@ -88,14 +89,14 @@ class MyFavTeacherView(LoginRequiredMixin, View):
     login_url = '/login/'
 
     def get(self, request, *args, **kwargs):
-        current_page = 'myfav_teacher'
+        # current_page = 'myfav_teacher'
         fav_teacher = UserFavorite.objects.filter(user=request.user, fav_type=3)
         teacher_list = []
         for fav_org in fav_teacher:
             teacher = CourseOrg.objects.get(id=fav_org.fav_id)
             teacher_list.append(teacher)
         return render(request, 'usercenter-fav-teacher.html', {
-            "current_page": current_page,
+            # "current_page": current_page,
             "teacher_list": teacher_list
         })
 
